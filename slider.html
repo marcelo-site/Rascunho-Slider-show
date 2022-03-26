@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #divslide{
+            width: 1200px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        let imgs=[];
+        let sliderShow;
+        let imgAtual;
+        let maxImg;
+        let temp;
+        let transicao;
+
+        function preCarrregar(){
+            let s=1
+        for(let i=0; i<3; i++){
+            imgs[i]=new Image();
+            imgs[i].src="img/slider" +s+ ".jpg";
+            s++;
+            }
+        }
+        function mostrar(img){
+            sliderShow.style.backgroundImage="url('"+imgs[img].src+"')";
+        }
+        function inicia (){
+            preCarrregar();
+            imgAtual=0
+            transicao=3000
+            maxImg=imgs.length-1;
+            sliderShow=document.getElementById("divslide");
+            mostrar(imgAtual);
+            temp=setInterval(troca, transicao)
+        }
+        function troca(){
+            imgAtual++;
+            if(imgAtual > maxImg){
+                imgAtual=0;
+            }
+            mostrar(imgAtual);
+        }
+        window.addEventListener("load", inicia)
+    </script>
+</head>
+<body>
+    <div id="divslide"></div>
+</body>
+</html>
